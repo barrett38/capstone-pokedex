@@ -5,6 +5,7 @@ import enduranceIcon from "../assets/enduranceIcon.png";
 import shieldIcon from "../assets/shieldIcon.png";
 import LogInIcon from "../assets/LogInIcon.png";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const routes = [
   { path: "/", icon: PokeballPic, alt: "Pokeball" },
@@ -12,10 +13,10 @@ const routes = [
   { path: "/BestSpeed", icon: speedIcon, alt: "Speed" },
   { path: "/BestEndurance", icon: enduranceIcon, alt: "Endurance" },
   { path: "/BestDefense", icon: shieldIcon, alt: "Defense" },
-  { path: "/LogInPage", icon: LogInIcon, alt: "Log-in" },
+  { path: "/auth", icon: LogInIcon, alt: "Log-in" },
 ];
 
-export default function Header() {
+export default function NavBar() {
   return (
     <header id="main-header">
       <div id="title">
@@ -25,6 +26,7 @@ export default function Header() {
           </Link>
         ))}
       </div>
+      <Header />
     </header>
   );
 }

@@ -3,10 +3,17 @@ import "./App.css";
 import { useContext } from "react";
 import AuthContext from "./store/authContext";
 // import Header from "./components/Header";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import Auth from "./components/Auth";
 import Form from "./components/Form";
 import Profile from "./components/Profile";
+import {
+  AllPokemon,
+  BestAttacks,
+  BestSpeed,
+  BestEndurance,
+  BestDefense,
+} from "./components/AllPokemon";
 
 const App = () => {
   const { state } = useContext(AuthContext);
@@ -14,7 +21,7 @@ const App = () => {
     <div className="app">
       {/* <Header /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route
           path="/auth"
           element={!state.token ? <Auth /> : <Navigate to="/" />}
@@ -27,6 +34,11 @@ const App = () => {
           path="/profile"
           element={state.token ? <Profile /> : <Navigate to="/" />}
         />
+        <Route path="/" element={<AllPokemon />} />
+        <Route path="/BestAttacks" element={<BestAttacks />} />
+        <Route path="/BestSpeed" element={<BestSpeed />} />
+        <Route path="/BestEndurance" element={<BestEndurance />} />
+        <Route path="/BestDefense" element={<BestDefense />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
