@@ -27,7 +27,7 @@ const Auth = () => {
 
   return (
     <main>
-      <h1 className="login-welcome">Welcome, P!</h1>
+      <h1 className="login-welcome">Welcome, Pokemon Master!</h1>
       <form className="form auth-form" onSubmit={submitHandler}>
         <input
           className="form-input"

@@ -33,17 +33,20 @@ module.exports = {
   },
   editPost: async (req, res) => {
     try {
-      const {id} = req.params
-      const {status} = req.body
-      await Post.update({privateStatus: status}, {
-          where: {id: +id}
-      })
-      res.sendStatus(200)
-  } catch (error) {
-      console.log('ERROR IN getCurrentUserPosts')
-      console.log(error)
-      res.sendStatus(400)
-  }
+      const { id } = req.params;
+      const { status } = req.body;
+      await Post.update(
+        { privateStatus: status },
+        {
+          where: { id: +id },
+        }
+      );
+      res.sendStatus(200);
+    } catch (error) {
+      console.log("ERROR IN getCurrentUserPosts");
+      console.log(error);
+      res.sendStatus(400);
+    }
   },
   getCurrentUserPosts: async (req, res) => {
     try {
@@ -67,13 +70,13 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
-      const {id} = req.params
-      await Post.destroy({where: {id: +id}})
-      res.sendStatus(200)
-  } catch (error) {
-      console.log('ERROR IN getCurrentUserPosts')
-      console.log(error)
-      res.sendStatus(400)
-  }
+      const { id } = req.params;
+      await Post.destroy({ where: { id: +id } });
+      res.sendStatus(200);
+    } catch (error) {
+      console.log("ERROR IN getCurrentUserPosts");
+      console.log(error);
+      res.sendStatus(400);
+    }
   },
 };
