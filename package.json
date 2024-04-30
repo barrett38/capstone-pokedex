@@ -1,7 +1,7 @@
 {
   "name": "mini-social-mountain",
   "version": "0.1.0",
-  "main": "server/index.js", 
+  "main": "server/index.js",
   "proxy": "http://localhost:4005",
   "nodemonConfig": {
     "ext": "js,sql",
@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@supabase/supabase-js": "^2.42.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",

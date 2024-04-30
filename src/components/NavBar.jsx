@@ -7,6 +7,7 @@ import LogInIcon from "../assets/LogInIcon.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../store/authContext";
+import { NavLink } from "react-router-dom";
 
 const routes = [
   { path: "/", icon: PokeballPic, alt: "Pokeball" },
@@ -20,6 +21,12 @@ const routes = [
 export default function NavBar() {
   const { state, dispatch } = useContext(AuthContext);
 
+  const styleActiveLink = ({ isActive }) => {
+    return {
+      color: isActive ? "#f57145" : "",
+    };
+  };
+
   return (
     <header>
       <div id="title">
@@ -27,6 +34,15 @@ export default function NavBar() {
           <nav>
             {state.token ? (
               <ul>
+                <li>
+                  <NavLink
+                    className="logout-btn"
+                    style={styleActiveLink}
+                    to="profile"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
                 <li>
                   <button
                     className="logout-btn"

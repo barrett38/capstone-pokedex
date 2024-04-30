@@ -4,7 +4,7 @@ const initialState = {
   userId: null,
   token: null,
   exp: null,
-  username: null
+  username: null,
 };
 
 const AuthContext = createContext();
@@ -15,18 +15,17 @@ const getLocalData = () => {
   const storedId = localStorage.getItem("userId");
   const storedName = localStorage.getItem("username");
 
-  let remainingTime = storedExp - new Date().getTime()
-  if(remainingTime < 0) {
-    localStorage.clear()
-    return null
+  let remainingTime = storedExp - new Date().getTime();
+  if (remainingTime < 0) {
+    localStorage.clear();
+    return null;
   }
-  //TODO CALCULATE REMAINING TIME FROM THE EXP DATE.
 
   return {
     token: storedToken,
     exp: storedExp,
     userId: storedId,
-    username: storedName
+    username: storedName,
   };
 };
 
