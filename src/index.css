@@ -45,18 +45,11 @@ body {
 /* ID Selectors */
 
 /* Very, very Top */
-#main-header {
-  /* Flexbox */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-content: stretch;
-  /* Remaining */
-  position: fixed;
-  background-color: transparent;
-  top: 0px;
+.login-welcome {
+  margin-bottom: 1rem;
+  padding-left: 20px;
+  font-family: "Honk Regular", sans-serif;
+  font-size: 208%;
 }
 
 /* Far left Navigation Bar */
@@ -71,7 +64,7 @@ body {
   /* Remaining */
   position: fixed;
   background-color: transparent;
-  padding-top: 1px;
+  top: 0px;
 }
 
 /* Icons in the NAV BAR */

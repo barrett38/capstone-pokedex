@@ -18,15 +18,15 @@ const routes = [
 
 export default function NavBar() {
   return (
-    <header id="main-header">
+    <header>
       <div id="title">
+        <Header />
         {routes.map((route) => (
           <Link to={route.path} key={route.path}>
             <img src={route.icon} alt={route.alt} />
           </Link>
         ))}
       </div>
-      <Header />
     </header>
   );
 }
