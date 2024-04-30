@@ -40,3 +40,10 @@ sequelize
     );
   })
   .catch((err) => console.log(err));
+
+// https://github.com/barrett38/capstone-pokedex
+// Use Code is needed:
+// git reset --hard COMMIT_ID
+
+// Sign Up is set up:
+// c0cb4a38c005f99c15a52a1ab98d6e320508451e
