@@ -1,3 +1,4 @@
+// not being utilized at the moment
 const { sequelize } = require("../../server/util/database");
 
 const Pokemon = sequelize.define("pokemon", {
