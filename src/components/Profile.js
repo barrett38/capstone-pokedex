@@ -43,7 +43,9 @@ const Profile = () => {
     <main>
       {randomPokemon ? (
         <div>
-          <h1>Your random Pokemon is: {randomPokemon.name}</h1>
+          <h1 id="login-welcome">
+            Your random Pokemon is: {randomPokemon.name}
+          </h1>
           <img src={randomPokemon.image} alt={randomPokemon.name} />
           <p>Abilities: {randomPokemon.abilities.join(", ")}</p>
           <p>Types: {randomPokemon.types.join(", ")}</p>

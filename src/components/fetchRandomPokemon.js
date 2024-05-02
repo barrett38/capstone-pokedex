@@ -1,4 +1,4 @@
-const { Pokemon } = require("./fetchRandomPokemon");
+const { Pokemon } = require("./pokemon");
 
 async function fetchRandomPokemon(userId) {
   const totalNumOfPokemons = 150;
