@@ -3,7 +3,6 @@ const { User } = require("../models/user");
 const axios = require("axios");
 
 module.exports = {
-  // working
   addPost: async (req, res) => {
     try {
       // Get a random Pokemon ID between 1 and 151 (for the original Pokemon)
@@ -14,13 +13,13 @@ module.exports = {
         `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
       );
 
-      // Get the Pokemon's name and details
-      const { name, species, height, weight } = response.data;
+      // Get the Pokemon's name, height, weight, and picture
+      const { name, height, weight, sprites } = response.data;
 
       // Create a new post with the Pokemon's name as the title and the Pokemon's details as the content
       let { status, userId } = req.body;
       let title = name;
-      let content = `Species: ${species.name}, Height: ${height}, Weight: ${weight}`;
+      let content = `Height: ${height}, Weight: ${weight}, Picture: ${sprites.front_default}`;
       await Post.create({ title, content, userId, privateStatus: status });
 
       res.status(200);
@@ -29,7 +28,7 @@ module.exports = {
       res.status(400).send(error);
     }
   },
-  // working
+
   getAllPosts: async (req, res) => {
     try {
       const posts = await Post.findAll({
@@ -49,23 +48,7 @@ module.exports = {
       res.sendStatus(400);
     }
   },
-  editPost: async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { status } = req.body;
-      await Post.update(
-        { privateStatus: status },
-        {
-          where: { id: +id },
-        }
-      );
-      res.sendStatus(200);
-    } catch (error) {
-      console.log("ERROR IN getCurrentUserPosts");
-      console.log(error);
-      res.sendStatus(400);
-    }
-  },
+
   getCurrentUserPosts: async (req, res) => {
     try {
       const { userId } = req.params;
@@ -80,17 +63,6 @@ module.exports = {
         ],
       });
       res.status(200).send(posts);
-    } catch (error) {
-      console.log("ERROR IN getCurrentUserPosts");
-      console.log(error);
-      res.sendStatus(400);
-    }
-  },
-  deletePost: async (req, res) => {
-    try {
-      const { id } = req.params;
-      await Post.destroy({ where: { id: +id } });
-      res.sendStatus(200);
     } catch (error) {
       console.log("ERROR IN getCurrentUserPosts");
       console.log(error);
