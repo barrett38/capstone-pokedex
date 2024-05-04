@@ -6,18 +6,11 @@ module.exports = {
   addPost: async (req, res) => {
     try {
       const pokemonId = Math.floor(Math.random() * 151) + 1;
-
-      // Make a GET request to the Poke API
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
       );
-
-      // Get the Pokemon's name, height, weight, and picture
       const { name, height, weight, sprites } = response.data;
-
-      // Create a new post with the Pokemon's name as the title and the Pokemon's details as the content
       let { status, userId } = req.body;
-      // let title = name;
       let content = `Height: ${height}, Weight: ${weight}, Picture: ${sprites.front_default}`;
       await Post.create({ name, content, userId, privateStatus: status });
 
