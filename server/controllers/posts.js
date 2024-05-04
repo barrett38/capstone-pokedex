@@ -18,9 +18,9 @@ module.exports = {
 
       // Create a new post with the Pokemon's name as the title and the Pokemon's details as the content
       let { status, userId } = req.body;
-      let title = name;
+      // let title = name;
       let content = `Height: ${height}, Weight: ${weight}, Picture: ${sprites.front_default}`;
-      await Post.create({ title, content, userId, privateStatus: status });
+      await Post.create({ name, content, userId, privateStatus: status });
 
       res.status(200);
     } catch (error) {
