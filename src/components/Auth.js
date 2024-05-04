@@ -1,12 +1,17 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../store/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(true);
+  const [title, setTitle] = useState(""); // new state variable
+  const [content, setContent] = useState(""); // new state variable
+  const [status, setStatus] = useState(true); // new state variable
   const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,6 +20,24 @@ const Auth = () => {
       .post(register ? "/register" : "/login", body)
       .then((res) => {
         dispatch({ type: "LOGIN", payload: res.data });
+
+        // Add the new axios post request here
+        axios
+          .post(
+            "/posts",
+            { title, content, status, userId: res.data.userId }, // assuming res.data contains userId
+            {
+              headers: {
+                authorization: res.data.token, // assuming res.data contains token
+              },
+            }
+          )
+          .then(() => {
+            navigate("/profile");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         if (err.response.data) {
