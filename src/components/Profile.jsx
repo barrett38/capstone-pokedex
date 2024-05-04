@@ -5,7 +5,7 @@ import AuthContext from "../store/authContext";
 
 const Profile = () => {
   const {
-    state: { userId, token },
+    state: { userId },
   } = useContext(AuthContext);
 
   const [posts, setPosts] = useState([]);
