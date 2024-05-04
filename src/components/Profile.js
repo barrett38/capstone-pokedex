@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState, useCallback } from "react";
+import axios from "axios";
+
 import AuthContext from "../store/authContext";
 
 const Profile = () => {
@@ -6,53 +8,34 @@ const Profile = () => {
     state: { userId, token },
   } = useContext(AuthContext);
 
-  const [randomPokemon, setRandomPokemon] = useState(null);
+  const [posts, setPosts] = useState([]);
 
-  const fetchRandomPokemon = useCallback(async () => {
-    const totalNumOfPokemons = 150;
-    const randomId = Math.floor(Math.random() * totalNumOfPokemons) + 1;
-    const API_URL = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
-
-    try {
-      const response = await fetch(API_URL);
-      const pokemonData = await response.json();
-
-      const pokemon = {
-        id: pokemonData.id,
-        name: pokemonData.name,
-        image: pokemonData.sprites.front_default,
-        abilities: pokemonData.abilities.map((a) => a.ability.name),
-        stats: pokemonData.stats.map((s) => ({
-          name: s.stat.name,
-          base: s.base_stat,
-        })),
-        types: pokemonData.types.map((t) => t.type.name),
-      };
-
-      setRandomPokemon(pokemon);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }, []);
+  const getUserPosts = useCallback(() => {
+    axios
+      .get(`/userposts/${userId}`)
+      .then((res) => setPosts(res.data))
+      .catch((err) => console.log(err));
+  }, [userId]);
 
   useEffect(() => {
-    fetchRandomPokemon();
-  }, [fetchRandomPokemon]);
+    getUserPosts();
+  }, [getUserPosts]);
 
-  return (
+  const mappedPosts = posts.map((post) => {
+    return (
+      <div key={post.id} className="post-card">
+        <h2>{post.title}</h2>
+        <h4>{post.user.username}</h4>
+        <p>{post.content}</p>
+      </div>
+    );
+  });
+
+  return mappedPosts.length >= 1 ? (
+    <main>{mappedPosts}</main>
+  ) : (
     <main>
-      {randomPokemon ? (
-        <div>
-          <h1 id="login-welcome">
-            Your random Pokemon is: {randomPokemon.name}
-          </h1>
-          <img src={randomPokemon.image} alt={randomPokemon.name} />
-          <p>Abilities: {randomPokemon.abilities.join(", ")}</p>
-          <p>Types: {randomPokemon.types.join(", ")}</p>
-        </div>
-      ) : (
-        <h1>Loading...</h1>
-      )}
+      <h1>You haven't posted yet!</h1>
     </main>
   );
 };
