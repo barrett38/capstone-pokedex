@@ -11,7 +11,7 @@ module.exports = {
       );
       const { name, height, weight, sprites } = response.data;
       let { status, userId } = req.body;
-      let content = `Height: ${height}, Weight: ${weight}, Picture: ${sprites.front_default}`;
+      let content = `Name: ${name}, Height: ${height}, Weight: ${weight}`;
       await Post.create({ name, content, userId, privateStatus: status });
 
       res.status(200);

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 import AuthContext from "../store/authContext";
-import PokemonImage from "../components/PokemonImage";
 
 const Profile = () => {
   const {
@@ -25,8 +24,9 @@ const Profile = () => {
   const mappedPosts = posts.map((post) => {
     return (
       <div key={post.id} className="post-card">
-        <h2>{post.title}</h2>
-        <img src={post.image} alt="Pokemon" />
+        <h2>{post.name}</h2>
+        {/* <h4>{post.user.username}</h4> */}
+        <p>{post.content}</p>
       </div>
     );
   });
