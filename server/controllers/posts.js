@@ -5,7 +5,6 @@ const axios = require("axios");
 module.exports = {
   addPost: async (req, res) => {
     try {
-      // Get a random Pokemon ID between 1 and 151 (for the original Pokemon)
       const pokemonId = Math.floor(Math.random() * 151) + 1;
 
       // Make a GET request to the Poke API
