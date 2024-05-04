@@ -25,7 +25,6 @@ const Profile = () => {
     return (
       <div key={post.id} className="post-card">
         <h2>{post.name}</h2>
-        {/* <h4>{post.user.username}</h4> */}
         <p>{post.content}</p>
       </div>
     );

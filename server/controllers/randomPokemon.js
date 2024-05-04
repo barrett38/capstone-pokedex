@@ -3,9 +3,11 @@ const { User } = require("../models/user");
 const axios = require("axios");
 
 module.exports = {
-  addPost: async (req, res) => {
+  addRandomPokemon: async (req, res) => {
+    const numOfPokemon = 151;
+
     try {
-      const pokemonId = Math.floor(Math.random() * 151) + 1;
+      const pokemonId = Math.floor(Math.random() * numOfPokemon) + 1;
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
       );
@@ -21,27 +23,7 @@ module.exports = {
     }
   },
 
-  getAllPosts: async (req, res) => {
-    try {
-      const posts = await Post.findAll({
-        where: { privateStatus: false },
-        include: [
-          {
-            model: User,
-            required: true,
-            attributes: [`username`],
-          },
-        ],
-      });
-      res.status(200).send(posts);
-    } catch (error) {
-      console.log("ERROR IN getAllPosts");
-      console.log(error);
-      res.sendStatus(400);
-    }
-  },
-
-  getCurrentUserPosts: async (req, res) => {
+  getUsersPokemon: async (req, res) => {
     try {
       const { userId } = req.params;
       const posts = await Post.findAll({
@@ -56,7 +38,7 @@ module.exports = {
       });
       res.status(200).send(posts);
     } catch (error) {
-      console.log("ERROR IN getCurrentUserPosts");
+      console.log("ERROR IN getUsersPokemon");
       console.log(error);
       res.sendStatus(400);
     }

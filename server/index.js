@@ -7,10 +7,9 @@ const { User } = require("./models/user");
 const { Post } = require("./models/post");
 
 const {
-  getAllPosts,
-  getCurrentUserPosts,
-  addPost,
-} = require("./controllers/posts");
+  getUsersPokemon,
+  addRandomPokemon,
+} = require("./controllers/randomPokemon");
 
 const { register, login } = require("./controllers/auth");
 const { isAuthenticated } = require("./middleware/isAuthenticated");
@@ -20,13 +19,12 @@ app.use(cors());
 
 Post.belongsTo(User);
 
-app.get("/posts", getAllPosts);
-app.post("/posts", isAuthenticated, addPost);
+app.post("/posts", isAuthenticated, addRandomPokemon);
 
 app.post("/register", register);
 app.post("/login", login);
 
-app.get("/userposts/:userId", getCurrentUserPosts);
+app.get("/userposts/:userId", getUsersPokemon);
 
 sequelize
   .sync()
