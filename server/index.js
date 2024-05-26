@@ -40,3 +40,6 @@ sequelize
 
 // Most Recent- Random Pokemon working:
 // git reset --hard b61a7eb190f9e2e6bcba94e5c19068fc4346626c
+
+// Username: admin38
+// Password: pw123

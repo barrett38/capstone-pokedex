@@ -13,8 +13,13 @@ module.exports = {
       );
       const { name, height, weight, sprites } = response.data;
       let { status, userId } = req.body;
-      let content = `Name: ${name}, Height: ${height}, Weight: ${weight}`;
-      await Post.create({ name, content, userId, privateStatus: status });
+      let content = `Name: ${name}, Height: ${height}, Weight: ${weight}, Image: ${sprites.front_default}`;
+      await Post.create({
+        name,
+        content,
+        userId,
+        privateStatus: status,
+      });
 
       res.status(200);
     } catch (error) {

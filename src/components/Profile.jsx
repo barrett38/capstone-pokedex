@@ -24,7 +24,8 @@ const Profile = () => {
   const mappedPosts = posts.map((post) => {
     return (
       <div key={post.id} className="post-card">
-        <h2>{post.name}</h2>
+        {/* <img src={post.image} alt={post.name} /> */}
+        {/* <h2>{post.name}</h2> */}
         <p>{post.content}</p>
       </div>
     );
